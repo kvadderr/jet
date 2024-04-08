@@ -42,7 +42,7 @@ export class AuthController {
         const { id, tokenVersion } = existingUser;
         const tokens = this.authService.assignTokens(id, tokenVersion);
         console.log(tokens)
-        return 'lool';
+        return tokens
     }
 
 
