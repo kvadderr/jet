@@ -34,12 +34,14 @@ export class AuthController {
                 isValid = false;
                 existingUser = await this.userService.create({ phone, code })
             }
+            console.log(existingUser)
         } catch (error) {
             console.log(error)
             throw new ForbiddenException('Username or password is invalid');
         }
         const { id, tokenVersion } = existingUser;
         const tokens = this.authService.assignTokens(id, tokenVersion);
+        console.log(tokens)
         return { accessToken: tokens[0], code: code, isNew: isValid };
     }
 
