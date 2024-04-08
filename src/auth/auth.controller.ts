@@ -35,6 +35,7 @@ export class AuthController {
                 existingUser = await this.userService.create({ phone, code })
             }
         } catch (error) {
+            console.log(error)
             throw new ForbiddenException('Username or password is invalid');
         }
         const { id, tokenVersion } = existingUser;
