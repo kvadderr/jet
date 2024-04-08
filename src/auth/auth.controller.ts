@@ -23,7 +23,7 @@ export class AuthController {
     ) { }
 
     @Post('sendCode')
-    async loginUser(@Body() loginUserDto: LoginUserDto){
+    async loginUser(@Body() loginUserDto: LoginUserDto): Promise<LoginResponse> {
         const { phone } = loginUserDto;
         let existingUser: Omit<User, 'createdAt' | 'updatedAt'>;
         let isValid: boolean = true;
@@ -42,7 +42,9 @@ export class AuthController {
         const { id, tokenVersion } = existingUser;
         const tokens = this.authService.assignTokens(id, tokenVersion);
         console.log(tokens)
-        return tokens
+        console.log(code)
+        console.log(isValid)
+        return { accessToken: tokens[0], code: code, isNew: isValid };
     }
 
 
