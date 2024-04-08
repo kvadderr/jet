@@ -13,16 +13,16 @@ export class User extends AppEntity {
     @Column({ unique: true })
     phone: string;
 
-    @Column({ unique: true, length: 255 })
+    @Column({ nullable: true, unique: true, length: 255 })
     email: string;
 
-    @Column()
+    @Column({nullable: true})
     name: string;
 
-    @Column({ select: false })
+    @Column({ nullable: true, select: false })
     code: string;
 
-    @Column()
+    @Column({nullable: true})
     surname: string;
 
     @Column({ default: 0, select: false })
