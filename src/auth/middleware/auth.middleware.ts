@@ -6,7 +6,7 @@ import { AccessTokenPayload } from '../type/jwtPayload';
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   async use(req: Request | any, res: Response, next: () => void) {
     const bearerHeader = req.headers.authorization;
@@ -18,11 +18,11 @@ export class AuthMiddleware implements NestMiddleware {
     }
 
     try {
-      const { userId: id, role }: AccessTokenPayload = verify(
+      const { userId: id }: AccessTokenPayload = verify(
         accessToken,
         process.env.ACCESS_TOKEN_SECRET,
       );
-      user = await this.userService.findOneById(id);   
+      user = await this.userService.findOneById(id);
     } catch (error) {
       throw new ForbiddenException('Please register or sign in.');
     }
