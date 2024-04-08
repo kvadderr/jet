@@ -40,4 +40,8 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
+  async getCode(id: number) {
+    return (await this.userRepository.findOne({where: {id}})).code
+  }
+
 }
