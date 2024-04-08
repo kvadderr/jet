@@ -11,7 +11,7 @@ import { LoginResponse } from './type/loginResponse';
 import { LoginUserDto } from './dto/loginUser.dto';
 import { User } from '../user/user.entity';
 import { UserService } from '../user/user.service';
-import { CookieInterceptor } from './interceptor/cookie.interceptor';
+
 import { CheckCodeDto } from './dto/checkCode.dto';
 
 @Controller('/auth')
