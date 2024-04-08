@@ -45,7 +45,7 @@ export class AuthController {
         console.log(code)
         console.log(isValid)
         const data = {
-            accessToken: tokens[0],
+            accessToken: tokens.accessToken,
             code: code,
             isNew: isValid
         }
