@@ -56,6 +56,8 @@ export class AuthController {
     @Post('checkCode')
     async checkCode(@Body() checkCode: CheckCodeDto, @Req() req) {
         const currentCode = await this.userService.getCode(req.user.id)
+        console.log(currentCode)
+        console.log(checkCode.code)
         return currentCode === checkCode.code;
     }
 
