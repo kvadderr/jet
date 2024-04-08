@@ -26,12 +26,12 @@ export class AuthController {
     async loginUser(@Body() loginUserDto: LoginUserDto): Promise<LoginResponse> {
         const { phone } = loginUserDto;
         let existingUser: Omit<User, 'createdAt' | 'updatedAt'>;
-        let isValid: boolean = true;
+        let isValid: boolean = false;
         const code = '123456';
         try {
             existingUser = await this.userService.findOneByPhone(phone, code);
             if (!existingUser) {
-                isValid = false;
+                isValid = true;
                 existingUser = await this.userService.create({ phone, code })
             }
             console.log(existingUser)
