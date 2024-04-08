@@ -19,7 +19,7 @@ export class User extends AppEntity {
     @Column({nullable: true})
     name: string;
 
-    @Column({ nullable: true, select: false })
+    @Column({ nullable: true })
     code: string;
 
     @Column({nullable: true})
