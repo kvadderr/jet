@@ -55,7 +55,7 @@ export class AuthController {
 
     @Post('checkCode')
     async checkCode(@Body() checkCode: CheckCodeDto, @Req() req) {
-        console.log(req)
+        return req.user;
     }
 
 }
