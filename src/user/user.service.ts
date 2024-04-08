@@ -22,8 +22,12 @@ export class UserService {
     const user = await this.userRepository.findOne({
       where: { phone },
     });
-    user.code = code;
-    return await this.userRepository.save(user)
+    if ( user ) {
+      user.code = code;
+      return await this.userRepository.save(user)
+    }
+    return null
+    
   }
 
   async findOneById(id: number): Promise<UserResponse> {
