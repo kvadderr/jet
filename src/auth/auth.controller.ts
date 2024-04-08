@@ -14,7 +14,6 @@ import { UserService } from '../user/user.service';
 import { CookieInterceptor } from './interceptor/cookie.interceptor';
 import { CheckCodeDto } from './dto/checkCode.dto';
 
-@UseInterceptors(CookieInterceptor)
 @Controller('/auth')
 export class AuthController {
     constructor(
