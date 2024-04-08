@@ -14,7 +14,7 @@ import {
       return next.handle().pipe(
         map(data => {
           const res = context.switchToHttp().getResponse();
-          const { accessToken, refreshToken } = data;
+          const { accessToken, code, isNew, refreshToken } = data;
   
           res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
@@ -22,7 +22,7 @@ import {
             path: '/api/auth/refresh-token', // attach the refreshToken only to this endpoint
           });
   
-          return { accessToken };
+          return { accessToken, code, isNew };
         }),
       );
     }
