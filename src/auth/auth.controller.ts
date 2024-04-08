@@ -23,7 +23,7 @@ export class AuthController {
     ) { }
 
     @Post('sendCode')
-    async loginUser(@Body() loginUserDto: LoginUserDto): Promise<LoginResponse> {
+    async loginUser(@Body() loginUserDto: LoginUserDto){
         const { phone } = loginUserDto;
         let existingUser: Omit<User, 'createdAt' | 'updatedAt'>;
         let isValid: boolean = true;
