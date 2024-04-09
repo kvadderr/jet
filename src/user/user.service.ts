@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { UserResponse } from './type/userResponse';
 import { RegisterUserDto } from 'src/auth/dto/registerUser.dto';
+import { UpdateUserDto } from './dto/updateUser.dto';
 
 @Injectable()
 export class UserService {
@@ -22,12 +23,12 @@ export class UserService {
     const user = await this.userRepository.findOne({
       where: { phone },
     });
-    if ( user ) {
+    if (user) {
       user.code = code;
       return await this.userRepository.save(user)
     }
     return null
-    
+
   }
 
   async findOneById(id: number): Promise<UserResponse> {
@@ -41,7 +42,16 @@ export class UserService {
   }
 
   async getCode(id: number) {
-    return (await this.userRepository.findOne({where: {id}})).code
+    return (await this.userRepository.findOne({ where: { id } })).code
   }
 
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      return null;
+    }
+    // Например, используйте Object.assign или {...user, ...updateUserDto}, чтобы объединить поля
+    Object.assign(user, updateUserDto);
+    return this.userRepository.save(user); // сохраните обновленные данные пользователя
+  }
 }
