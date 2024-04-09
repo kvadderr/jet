@@ -20,7 +20,7 @@ export class UserController {
     }
   }
 
-  @Patch()
+  @Patch('/update')
   async updateUser(@Req() req, @Body() updateUserDto: UpdateUserDto): Promise<User> {
     const updatedUser = await this.userService.update(req.user.id, updateUserDto);
     if (!updatedUser) {
